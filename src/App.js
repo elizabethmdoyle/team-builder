@@ -11,8 +11,8 @@ const teamMembers = {
 
 function App() {
 
-  const {members, setMembers}= useState('')
-  const {formValues, setFormValues} = useState(teamMembers)
+  const [members, setMembers]= useState([])
+  const [formValues, setFormValues] = useState({teamMembers})
 
 
   const onChange = () => {

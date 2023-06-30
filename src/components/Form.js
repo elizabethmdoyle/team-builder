@@ -3,21 +3,22 @@ import axios from 'axios';
 
 const Form =(props) => {
  
-    const {values, submit } = props;
+    const {value, submit } = props;
 
-
+console.log(props)
     
   const onSubmit = (evt) => {
     evt.preventDevault()
+    submit()
   }
 
 
 
     return (
      <div>THIS IS THE FORM page returning
-        <form className="form" >
+        <form className="form" onSubmit={onSubmit} >
             <input 
-            name={props.name}
+            name={value.teamMembers.name}
             type="text"
             // value={}
             // onChange={}
@@ -26,7 +27,7 @@ const Form =(props) => {
             
             />
             <input  
-                email={props.email}
+                email={value.teamMembers.email}
                 type="text"
             />
 
