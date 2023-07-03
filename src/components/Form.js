@@ -3,44 +3,57 @@ import axios from 'axios';
 
 const Form =(props) => {
  
-    const {value, submit } = props;
+    const {value, submit, update } = props;
 
-console.log(props)
+    console.log(props)
+
+    const onChange = (evt) => {
+      const {name, value} = evt.target;
+      update(name, value)
+    }
+
+
     
   const onSubmit = (evt) => {
     evt.preventDevault()
     submit()
   }
 
+  // const onEdit = () => {
+  //  memberToEdit()
+  // }
+
 
 
     return (
-     <div>THIS IS THE FORM page returning
+     <div>Team Member 
         <form className="form" onSubmit={onSubmit} >
             <input 
-            name={value.teamMembers.name}
+            name={value.name}
             type="text"
-            // value={}
-            // onChange={}
+            value={value.name}
+            onChange={onChange}
 
-            
-            
             />
             <input  
-                email={value.teamMembers.email}
+                email={value.email}
                 type="text"
+                value={value.email}
+                onChange={onChange}
+
             />
 
-            <select value={props.role} name="role" >
+            <select value={value.role} name="role" >
                <option value="" >Select A Role</option>
                <option value="Student" >Student</option>
                <option value="Instructor" >Instructor</option>
                <option value="Alumni" >Alumni</option>
           </select>
 
-            <submit type="button" >Submit</submit>
+            <button type="submit" >Submit</button>
         </form>
         
+        <button type="button">Edit Members</button>
         
     `</div>
     )

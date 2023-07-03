@@ -14,10 +14,33 @@ function App() {
   const [members, setMembers]= useState([])
   const [formValues, setFormValues] = useState({teamMembers})
 
+  const {memberToEdit, setMemberToEdit}= useState([])
 
-  const onChange = () => {
+
+  
+  const updateForm = (inputName, inputValue) => {
+      setFormValues({...formValues, [inputName]: inputValue})
+  }
+  
+   const submitForm = () => {
+    const submit = [setFormValues, ...formValues]
+    submit()
 
   }
+
+   const team = {
+        username: formValues.username,
+        email: formValues.email,
+        role: formValues.role 
+  }  
+    
+  
+  
+
+  axios.post(`fakeapi.com`, members)
+  .then(res => setMembers(res.data, ...members))
+  .catch(err => console.error(err))
+
 
   useEffect( () => {
     axios.get('fakeapi.com')
@@ -34,6 +57,9 @@ function App() {
       This is the App rendering
     <Form 
       value={formValues}
+      update={updateForm}
+      submit={submitForm}
+      edit={memberToEdit}
      />
     </div>
   );
