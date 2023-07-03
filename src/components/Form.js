@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+// import Edit from '../components/Edit'
 
 const Form =(props) => {
  
@@ -15,45 +16,55 @@ const Form =(props) => {
 
     
   const onSubmit = (evt) => {
-    evt.preventDevault()
+    evt.preventDefault()
     submit()
   }
 
   // const onEdit = () => {
-  //  memberToEdit()
+  //  console.log(memberToEdit())
+  // return <Edit />
   // }
 
 
 
     return (
-     <div>Team Member 
+     <div>Team Builder App 
         <form className="form" onSubmit={onSubmit} >
+          <label> Name: 
             <input 
-            name={value.name}
+            name="name"
             type="text"
             value={value.name}
+            placeholder="Enter Your Name"
             onChange={onChange}
 
             />
+          </label>
+          <label> Email: 
             <input  
-                email={value.email}
+                email="email"
                 type="text"
                 value={value.email}
                 onChange={onChange}
+                placeholder="Enter Your Email"
+
 
             />
-
+          </label>
+          <label>Role: 
             <select value={value.role} name="role" >
                <option value="" >Select A Role</option>
                <option value="Student" >Student</option>
                <option value="Instructor" >Instructor</option>
                <option value="Alumni" >Alumni</option>
-          </select>
+            </select>
+          </label>
 
-            <button type="submit" >Submit</button>
+            <input type="submit" value="Create Your Team!" />
         </form>
         
-        <button type="button">Edit Members</button>
+        {/* need to add an on open and on close funcitonality to the Edit Members button to show the Edit section when the page is clicked, and  */}
+        {/* <button type="button" onEdit={onEdit}>Edit Members</button> */}
         
     `</div>
     )

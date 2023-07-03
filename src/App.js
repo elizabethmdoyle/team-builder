@@ -3,29 +3,32 @@ import axios from 'axios';
 import Form from './components/Form'
 import './App.css';
 
-const teamMembers = {
-  name: "",
-  email: "",
-  role: ""
-}
+
 
 function App() {
 
+  const teamMembers = {
+    name: "",
+    email: "",
+    role: ""
+  }
+
+  
   const [members, setMembers]= useState([])
   const [formValues, setFormValues] = useState({teamMembers})
 
-  const {memberToEdit, setMemberToEdit}= useState([])
+  // const {memberToEdit, setMemberToEdit}= useState([])
 
 
   
-  const updateForm = (inputName, inputValue) => {
-      setFormValues({...formValues, [inputName]: inputValue})
+  const updateForm = (name, value) => {
+      setFormValues({...formValues, [name]: value})
   }
   
    const submitForm = () => {
-    const submit = [setFormValues, ...formValues]
-    submit()
-
+    setMembers([formValues, ...members])
+    setFormValues({name: "", email: "", role: ""})
+    
   }
 
    const team = {
@@ -37,16 +40,16 @@ function App() {
   
   
 
-  axios.post(`fakeapi.com`, members)
-  .then(res => setMembers(res.data, ...members))
-  .catch(err => console.error(err))
+  // axios.post(`fakeapi.com`, members)
+  // .then(res => setMembers(res.data, ...members))
+  // .catch(err => console.error(err))
 
 
-  useEffect( () => {
-    axios.get('fakeapi.com')
-    .then(res => setMembers(res.data))
-    .catch(err => console.error(err))
-  }, [])
+  // useEffect( () => {
+  //   axios.get('fakeapi.com')
+  //   .then(res => setMembers(res.data))
+  //   .catch(err => console.error(err))
+  // }, [])
 
 
 
@@ -59,8 +62,18 @@ function App() {
       value={formValues}
       update={updateForm}
       submit={submitForm}
-      edit={memberToEdit}
+      
      />
+
+     { members.map((member), idx => {
+      return (
+        
+          <div key={idx}>
+            {member.name}, {member.email}, {member.role}
+
+          </div>
+      )
+     })}
     </div>
   );
 }
